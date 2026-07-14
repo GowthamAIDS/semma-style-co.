@@ -3,27 +3,31 @@
 *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg-primary: #f6f4f0;
-  --bg-card: rgba(255, 255, 255, 0.65);
+  --bg-primary: #f4f1ec;
+  --bg-card: rgba(255, 255, 255, 0.7);
   --text-primary: #1a1a1a;
   --text-secondary: #7a746e;
   --border: rgba(0, 0, 0, 0.07);
   --border-glass: rgba(255, 255, 255, 0.5);
   --accent: #c4b8a8;
-  --accent-gradient: linear-gradient(135deg, #c4b8a8 0%, #e8ddd0 100%);
-  --primary-gradient: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-  --gold: #d4a853;
-  --gold-light: #f0e6d3;
+  --accent-hover: #b8aa98;
+  --accent-gradient: linear-gradient(135deg, #c4b8a8 0%, #e0d5c8 100%);
+  --primary-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  --gold: #c9a84c;
+  --gold-light: #f5efe0;
   --rose: #c4847a;
+  --rose-light: #f0e0dd;
+  --sage: #9aab94;
+  --sage-light: #e8ede6;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.05);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.06);
-  --shadow-glass: 0 8px 32px rgba(0,0,0,0.04);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.07);
+  --shadow-glass: 0 8px 32px rgba(0,0,0,0.05);
   --glass-blur: blur(18px);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
-  --radius-xl: 20px;
+  --radius-xl: 24px;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -77,11 +81,7 @@ ul { list-style: none; }
 .text-gold { color: var(--gold); }
 .bg-gradient-warm { background: linear-gradient(135deg, #f6f4f0 0%, #f0ebe4 100%); }
 
-/* ── GSAP Trigger Classes ── */
-.gsap-reveal { opacity: 0; transform: translateY(40px); }
-.gsap-reveal-left { opacity: 0; transform: translateX(-40px); }
-.gsap-reveal-right { opacity: 0; transform: translateX(40px); }
-.gsap-reveal-scale { opacity: 0; transform: scale(0.9); }
+/* ── GSAP Trigger Classes (initial state set by JS, not CSS) ── */
 
 /* ── Responsive Helpers ── */
 @media (max-width: 768px) {

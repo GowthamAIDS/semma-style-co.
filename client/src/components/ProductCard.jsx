@@ -15,10 +15,10 @@ export default function ProductCard({ product }) {
 
   return (
     <Link to={`/shop/${product.id}`} style={{ display: 'block', textDecoration: 'none' }}>
-      <div className="card card-sm" style={{ overflow: 'hidden', cursor: 'pointer' }}>
-        <div style={{ aspectRatio: '3/4', background: '#f0ede8', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+      <div className="card card-sm card-product">
+        <div className="card-img">
           {images[imgIndex] ? (
-            <img src={images[imgIndex]} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'opacity 0.4s' }} />
+            <img src={images[imgIndex]} alt={product.name} />
           ) : (
             <span style={{ color: 'var(--text-secondary)', fontSize: 13 }}>No Image</span>
           )}

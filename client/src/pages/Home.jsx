@@ -15,28 +15,28 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
-        <div>
-          <p className="gsap-reveal" style={{
-            fontSize: 12, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase',
-            color: 'var(--text-secondary)', marginBottom: 20,
-          }}>Semma Style Co</p>
+        <div className="hero-content">
+          <span className="gsap-reveal hero-badge">Premium Design Studio</span>
           <h1 className="gsap-reveal" style={{
             fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, letterSpacing: '-1.5px',
             maxWidth: 700, margin: '0 auto 20px', lineHeight: 1.1,
-          }}>Premium Digital Designs for Modern Brands</h1>
+          }}>Crafted for<br />Modern Brands</h1>
           <p className="gsap-reveal" style={{
-            fontSize: 17, color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto 36px',
+            fontSize: 17, color: 'var(--text-secondary)', maxWidth: 520, margin: '0 auto 36px',
             lineHeight: 1.7,
-          }}>Curated mockups and t-shirt designs crafted to elevate your brand identity.</p>
-          <Link to="/shop" className="btn btn-primary btn-lg gsap-reveal">Shop Now</Link>
+          }}>Premium mockups and t-shirt designs to elevate your brand identity.</p>
+          <div className="gsap-reveal" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/shop" className="btn btn-primary btn-lg">Shop Now</Link>
+            <Link to="/shop?category=Mockups" className="btn btn-secondary btn-lg">View Mockups</Link>
+          </div>
         </div>
       </section>
 
       {featured.length > 0 && (
         <section style={{ padding: '0 0 100px' }} className="container">
-          <h2 className="gsap-reveal" style={{
-            fontSize: 28, fontWeight: 700, textAlign: 'center', marginBottom: 40,
-          }}>Featured Products</h2>
+          <h2 className="gsap-reveal section-title">Featured Products</h2>
+          <p className="gsap-reveal section-subtitle">Curated designs made for creators, brands, and everyone in between.</p>
+          <div className="section-divider gsap-reveal" style={{ marginBottom: 40 }} />
           <div className="grid-products gsap-reveal">
             {featured.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
