@@ -1,0 +1,4 @@
+node_modules/
+.env
+semma.db
+.DS_Store
