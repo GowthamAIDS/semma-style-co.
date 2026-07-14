@@ -64,9 +64,6 @@ export default function Login() {
             Don't have an account?{' '}
             <Link to="/signup" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Create one</Link>
           </p>
-          <p style={{ textAlign: 'center', marginTop: 12, fontSize: 12, color: 'var(--text-secondary)' }}>
-            Demo: admin@semma.com / admin123
-          </p>
         </div>
       </div>
     </div>

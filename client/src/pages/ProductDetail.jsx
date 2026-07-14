@@ -34,7 +34,7 @@ export default function ProductDetail() {
 
   return (
     <div className="page container" style={{ paddingTop: 120, paddingBottom: 80 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
+      <div className="product-detail-grid">
         <div>
           <div className="card" style={{
             aspectRatio: '3/4', overflow: 'hidden', display: 'flex',

@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { products as productsApi } from '../api';
 import ProductCard from '../components/ProductCard';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const categories = ['All', 'T-Shirts', 'Mockups'];
 
 export default function Shop() {
+  useScrollReveal();
   const [searchParams, setSearchParams] = useSearchParams();
   const active = searchParams.get('category') || 'All';
   const [items, setItems] = useState([]);

@@ -10,6 +10,11 @@
   --border: rgba(0, 0, 0, 0.07);
   --border-glass: rgba(255, 255, 255, 0.5);
   --accent: #c4b8a8;
+  --accent-gradient: linear-gradient(135deg, #c4b8a8 0%, #e8ddd0 100%);
+  --primary-gradient: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  --gold: #d4a853;
+  --gold-light: #f0e6d3;
+  --rose: #c4847a;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.05);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.06);
@@ -66,6 +71,17 @@ ul { list-style: none; }
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
 }
+
+/* ── Gradient Utilities ── */
+.text-gradient { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.text-gold { color: var(--gold); }
+.bg-gradient-warm { background: linear-gradient(135deg, #f6f4f0 0%, #f0ebe4 100%); }
+
+/* ── GSAP Trigger Classes ── */
+.gsap-reveal { opacity: 0; transform: translateY(40px); }
+.gsap-reveal-left { opacity: 0; transform: translateX(-40px); }
+.gsap-reveal-right { opacity: 0; transform: translateX(40px); }
+.gsap-reveal-scale { opacity: 0; transform: scale(0.9); }
 
 /* ── Responsive Helpers ── */
 @media (max-width: 768px) {

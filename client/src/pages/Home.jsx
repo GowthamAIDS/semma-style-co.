@@ -16,28 +16,28 @@ export default function Home() {
     <div className="page">
       <section className="hero">
         <div>
-          <p className="reveal" style={{
+          <p className="gsap-reveal" style={{
             fontSize: 12, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase',
             color: 'var(--text-secondary)', marginBottom: 20,
           }}>Semma Style Co</p>
-          <h1 className="reveal" style={{
+          <h1 className="gsap-reveal" style={{
             fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, letterSpacing: '-1.5px',
             maxWidth: 700, margin: '0 auto 20px', lineHeight: 1.1,
           }}>Premium Digital Designs for Modern Brands</h1>
-          <p className="reveal" style={{
+          <p className="gsap-reveal" style={{
             fontSize: 17, color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto 36px',
             lineHeight: 1.7,
           }}>Curated mockups and t-shirt designs crafted to elevate your brand identity.</p>
-          <Link to="/shop" className="btn btn-primary btn-lg reveal">Shop Now</Link>
+          <Link to="/shop" className="btn btn-primary btn-lg gsap-reveal">Shop Now</Link>
         </div>
       </section>
 
       {featured.length > 0 && (
         <section style={{ padding: '0 0 100px' }} className="container">
-          <h2 className="reveal" style={{
+          <h2 className="gsap-reveal" style={{
             fontSize: 28, fontWeight: 700, textAlign: 'center', marginBottom: 40,
           }}>Featured Products</h2>
-          <div className="grid-products reveal">
+          <div className="grid-products gsap-reveal">
             {featured.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
         </section>

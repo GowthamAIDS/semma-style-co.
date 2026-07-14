@@ -35,7 +35,7 @@ export default function Header() {
             {user ? (
               <button onClick={() => { logout(); navigate('/'); }} className="btn btn-sm btn-secondary">Logout</button>
             ) : (
-              <Link to="/login" className="btn btn-sm btn-primary hide-mobile">Login</Link>
+              <Link to="/login" className="btn btn-sm btn-primary">Login</Link>
             )}
             <Link to="/checkout" className="cart-link">
               Cart{items.length > 0 && <span className="cart-badge">{items.length}</span>}

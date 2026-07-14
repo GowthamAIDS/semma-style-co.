@@ -66,9 +66,6 @@ export default function AdminLogin() {
             </button>
           </form>
         </div>
-        <p style={{ textAlign: 'center', marginTop: 16, fontSize: 12, color: 'var(--text-secondary)' }}>
-          Demo: admin@semma.com / admin123
-        </p>
       </div>
     </div>
   );

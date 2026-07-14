@@ -27,10 +27,15 @@
 .btn:hover::after { background: rgba(255,255,255,0.1); }
 .btn:active { transform: scale(0.97); }
 .btn-primary {
-  background: var(--text-primary); color: var(--bg-primary);
+  background: var(--primary-gradient); color: var(--bg-primary);
   box-shadow: 0 2px 8px rgba(26,26,26,0.15);
 }
-.btn-primary:hover { box-shadow: 0 4px 16px rgba(26,26,26,0.2); }
+.btn-primary:hover { box-shadow: 0 4px 16px rgba(26,26,26,0.25); transform: translateY(-1px); }
+.btn-gradient {
+  background: linear-gradient(135deg, #c4b8a8 0%, #d4c8b8 100%);
+  color: #1a1a1a; box-shadow: 0 2px 12px rgba(196,184,168,0.3);
+}
+.btn-gradient:hover { box-shadow: 0 4px 20px rgba(196,184,168,0.4); transform: translateY(-1px); }
 .btn-secondary {
   background: var(--bg-card); backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -112,6 +117,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
+}
+
+/* ── Product Detail ── */
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
 }
 
 /* ── Stat Cards ── */
@@ -322,6 +335,10 @@
   .table-wrap table { font-size: 13px; }
   .table-wrap th,
   .table-wrap td { padding: 10px 12px; }
+
+  .product-detail-grid { grid-template-columns: 1fr; gap: 32px; }
+  .product-detail-grid > div:first-child { order: 1; }
+  .product-detail-grid > div:last-child { order: 0; padding-top: 0; }
 
   .page-sm { padding: 0 16px; }
 }
