@@ -26,12 +26,12 @@ const seed = () => {
   const result = db.exec('SELECT COUNT(*) as count FROM products');
   if (result[0].values[0][0] === 0) {
     const items = [
-      ['Classic Logo Tee Mockup', 'Premium PSD mockup of our signature logo tee.', 499, '/uploads/mockup1.svg', 'T-Shirts', '/uploads/files/logo-tee-mockup.psd', '/uploads/mockup1.svg,/uploads/tshirt1.svg,/uploads/tshirt2.svg,/uploads/mockup4.svg,/uploads/tshirt4.svg'],
-      ['Minimalist Mockup Pack', '10 high-resolution mockup templates.', 1299, '/uploads/mockup2.svg', 'Mockups', '/uploads/files/minimalist-pack.zip', '/uploads/mockup2.svg,/uploads/mockup3.svg,/uploads/tshirt3.svg,/uploads/mockup5.svg,/uploads/tshirt5.svg'],
-      ['Vintage Wash Tee Design', 'Distressed vintage-style t-shirt design.', 599, '/uploads/mockup3.svg', 'T-Shirts', '/uploads/files/vintage-tee.psd', '/uploads/mockup3.svg,/uploads/tshirt2.svg,/uploads/tshirt1.svg,/uploads/tshirt4.svg,/uploads/mockup6.svg'],
-      ['Brand Identity Mockup Kit', 'Complete brand identity mockup kit.', 1999, '/uploads/tshirt1.svg', 'Mockups', '/uploads/files/brand-kit.zip', '/uploads/tshirt1.svg,/uploads/mockup1.svg,/uploads/mockup3.svg,/uploads/tshirt5.svg,/uploads/mockup4.svg'],
-      ['Graphic Print Template', 'Bold geometric graphic print template.', 799, '/uploads/tshirt2.svg', 'T-Shirts', '/uploads/files/graphic-print.ai', '/uploads/tshirt2.svg,/uploads/mockup2.svg,/uploads/tshirt3.svg,/uploads/mockup5.svg,/uploads/tshirt6.svg'],
-      ['Apparel Design Template', 'Editable technical flat sketch template.', 599, '/uploads/tshirt3.svg', 'Mockups', '/uploads/files/apparel-template.psd', '/uploads/tshirt3.svg,/uploads/mockup1.svg,/uploads/mockup2.svg,/uploads/tshirt4.svg,/uploads/mockup6.svg'],
+      ['Classic Logo Tee Mockup', 'Premium PSD mockup of our signature logo tee.', 499, '/uploads/mockup1.svg', 'T-Shirts', '/uploads/mockup1.svg', '/uploads/mockup1.svg,/uploads/tshirt1.svg,/uploads/tshirt2.svg,/uploads/mockup4.svg,/uploads/tshirt4.svg'],
+      ['Minimalist Mockup Pack', '10 high-resolution mockup templates.', 1299, '/uploads/mockup2.svg', 'Mockups', '/uploads/mockup2.svg', '/uploads/mockup2.svg,/uploads/mockup3.svg,/uploads/tshirt3.svg,/uploads/mockup5.svg,/uploads/tshirt5.svg'],
+      ['Vintage Wash Tee Design', 'Distressed vintage-style t-shirt design.', 599, '/uploads/mockup3.svg', 'T-Shirts', '/uploads/tshirt1.svg', '/uploads/mockup3.svg,/uploads/tshirt2.svg,/uploads/tshirt1.svg,/uploads/tshirt4.svg,/uploads/mockup6.svg'],
+      ['Brand Identity Mockup Kit', 'Complete brand identity mockup kit.', 1999, '/uploads/tshirt1.svg', 'Mockups', '/uploads/mockup3.svg', '/uploads/tshirt1.svg,/uploads/mockup1.svg,/uploads/mockup3.svg,/uploads/tshirt5.svg,/uploads/mockup4.svg'],
+      ['Graphic Print Template', 'Bold geometric graphic print template.', 799, '/uploads/tshirt2.svg', 'T-Shirts', '/uploads/tshirt2.svg', '/uploads/tshirt2.svg,/uploads/mockup2.svg,/uploads/tshirt3.svg,/uploads/mockup5.svg,/uploads/tshirt6.svg'],
+      ['Apparel Design Template', 'Editable technical flat sketch template.', 599, '/uploads/tshirt3.svg', 'Mockups', '/uploads/mockup4.svg', '/uploads/tshirt3.svg,/uploads/mockup1.svg,/uploads/mockup2.svg,/uploads/tshirt4.svg,/uploads/mockup6.svg'],
     ];
     for (const item of items) {
       db.run('INSERT INTO products (name, description, price, image, category, file_url, gallery) VALUES (?, ?, ?, ?, ?, ?, ?)', item);
@@ -110,6 +110,20 @@ const initDb = async () => {
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
   )`);
   seed();
+
+  // Fix existing seed product file_urls to point to actual files
+  const fixOld = [
+    ['/uploads/files/logo-tee-mockup.psd', '/uploads/mockup1.svg'],
+    ['/uploads/files/minimalist-pack.zip', '/uploads/mockup2.svg'],
+    ['/uploads/files/vintage-tee.psd', '/uploads/tshirt1.svg'],
+    ['/uploads/files/brand-kit.zip', '/uploads/mockup3.svg'],
+    ['/uploads/files/graphic-print.ai', '/uploads/tshirt2.svg'],
+    ['/uploads/files/apparel-template.psd', '/uploads/mockup4.svg'],
+  ];
+  for (const [oldUrl, newUrl] of fixOld) {
+    db.run('UPDATE products SET file_url = ? WHERE file_url = ?', [newUrl, oldUrl]);
+  }
+  saveDb();
 };
 
 const queryAll = (sql, params = []) => {
