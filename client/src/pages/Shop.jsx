@@ -33,11 +33,9 @@ export default function Shop() {
       {loading ? (
         <p style={{ color: 'var(--text-secondary)', padding: '60px 0', textAlign: 'center' }}>Loading…</p>
       ) : items.length === 0 ? (
-        <div className="empty"><h2>No products found</h2><p style={{ color: 'var(--text-secondary)' }}>Try a different category.</p></div>
+        <div className="empty"><h2>No products found</h2><p>Try a different category.</p></div>
       ) : (
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 24,
-        }}>
+        <div className="grid-products">
           {items.map(p => <ProductCard key={p.id} product={p} />)}
         </div>
       )}

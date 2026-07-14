@@ -14,21 +14,19 @@ export default function Home() {
 
   return (
     <div className="page">
-      <section style={{
-        minHeight: '85vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        textAlign: 'center', padding: '120px 24px 80px',
-      }}>
+      <section className="hero">
         <div>
           <p className="reveal" style={{
             fontSize: 12, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase',
-            color: 'var(--text-secondary)', marginBottom: 16,
+            color: 'var(--text-secondary)', marginBottom: 20,
           }}>Semma Style Co</p>
           <h1 className="reveal" style={{
-            fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: 700, letterSpacing: '-1.5px',
+            fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, letterSpacing: '-1.5px',
             maxWidth: 700, margin: '0 auto 20px', lineHeight: 1.1,
           }}>Premium Digital Designs for Modern Brands</h1>
           <p className="reveal" style={{
             fontSize: 17, color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto 36px',
+            lineHeight: 1.7,
           }}>Curated mockups and t-shirt designs crafted to elevate your brand identity.</p>
           <Link to="/shop" className="btn btn-primary btn-lg reveal">Shop Now</Link>
         </div>
@@ -39,10 +37,7 @@ export default function Home() {
           <h2 className="reveal" style={{
             fontSize: 28, fontWeight: 700, textAlign: 'center', marginBottom: 40,
           }}>Featured Products</h2>
-          <div className="reveal" style={{
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: 24,
-          }}>
+          <div className="grid-products reveal">
             {featured.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
         </section>

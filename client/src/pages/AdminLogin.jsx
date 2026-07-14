@@ -32,14 +32,10 @@ export default function AdminLogin() {
 
   return (
     <div className="page container" style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh',
-      paddingTop: 80,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', paddingTop: 80,
     }}>
       <div style={{ width: '100%', maxWidth: 400 }}>
-        <div style={{
-          background: '#fff', borderRadius: 12, padding: '40px 36px',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
-        }}>
+        <div className="card" style={{ padding: '40px 36px' }}>
           <h1 style={{ fontSize: 26, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>Admin</h1>
           <p style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: 14, marginBottom: 28 }}>
             Sign in to access the admin panel.
@@ -60,7 +56,7 @@ export default function AdminLogin() {
                 style={{ paddingRight: 44 }}
               />
               <span onClick={() => setShowPw(p => !p)} style={{
-                position: 'absolute', right: 12, bottom: 10, fontSize: 13,
+                position: 'absolute', right: 12, bottom: 11, fontSize: 13,
                 color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none',
                 fontWeight: 600,
               }}>{showPw ? 'Hide' : 'Show'}</span>

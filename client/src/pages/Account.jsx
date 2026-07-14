@@ -13,7 +13,7 @@ export default function Account() {
   }, []);
 
   return (
-    <div className="page container" style={{ paddingTop: 120, paddingBottom: 80, maxWidth: 800, margin: '0 auto' }}>
+    <div className="page container page-sm" style={{ paddingTop: 120, paddingBottom: 80 }}>
       <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>My Account</h1>
       <p style={{ color: 'var(--text-secondary)', marginBottom: 36, fontSize: 14 }}>
         {user?.name} &middot; {user?.email}
@@ -26,14 +26,12 @@ export default function Account() {
       ) : orders.length === 0 ? (
         <div className="empty">
           <h2>No orders yet</h2>
-          <p style={{ color: 'var(--text-secondary)' }}>Start shopping to see your orders here.</p>
+          <p>Start shopping to see your orders here.</p>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {orders.map(order => (
-            <div key={order.id} style={{
-              border: '1px solid var(--border)', borderRadius: 8, padding: 20, background: '#fff',
-            }}>
+            <div key={order.id} className="card" style={{ padding: 20 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12, flexWrap: 'wrap', gap: 8 }}>
                 <div>
                   <p style={{ fontSize: 14, fontWeight: 600 }}>Order #{order.id}</p>
@@ -42,11 +40,9 @@ export default function Account() {
                   </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{
-                    fontSize: 12, fontWeight: 600, padding: '4px 12px', borderRadius: 20,
-                    background: order.status === 'completed' ? '#e8f5e9' : order.status === 'pending' ? '#fff3e0' : '#f5f5f5',
-                    color: order.status === 'completed' ? '#2e7d32' : order.status === 'pending' ? '#e65100' : '#666',
-                  }}>{order.status}</span>
+                  <span className={`badge ${order.status === 'completed' ? 'badge-success' : order.status === 'pending' ? 'badge-pending' : 'badge-default'}`}>
+                    {order.status}
+                  </span>
                   <span style={{ fontSize: 16, fontWeight: 700 }}>{formatPrice(order.total)}</span>
                 </div>
               </div>
@@ -65,7 +61,7 @@ export default function Account() {
               {order.download_token && (
                 <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12 }}>
                   <a
-                    href={`http://localhost:5000/api/orders/download/${order.download_token}`}
+                    href={`/api/downloads/${order.download_token}`}
                     className="btn btn-sm btn-primary"
                     target="_blank"
                     rel="noopener noreferrer"

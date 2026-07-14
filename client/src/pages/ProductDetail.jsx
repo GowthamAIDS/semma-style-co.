@@ -36,23 +36,27 @@ export default function ProductDetail() {
     <div className="page container" style={{ paddingTop: 120, paddingBottom: 80 }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
         <div>
-          <div style={{
-            position: 'relative', aspectRatio: '3/4', background: '#f5f2ef', borderRadius: 12,
-            overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          <div className="card" style={{
+            aspectRatio: '3/4', overflow: 'hidden', display: 'flex',
+            alignItems: 'center', justifyContent: 'center', padding: 0,
           }}>
             {allImages.length > 1 && (
               <>
                 <button onClick={() => setImgIndex(i => i === 0 ? allImages.length - 1 : i - 1)} style={{
-                  position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
+                  position: 'absolute', left: 12, top: '50%', zIndex: 2,
+                  transform: 'translateY(-50%)',
                   background: 'rgba(255,255,255,0.85)', border: 'none', borderRadius: '50%',
                   width: 36, height: 36, fontSize: 18, cursor: 'pointer', display: 'flex',
-                  alignItems: 'center', justifyContent: 'center', zIndex: 2,
+                  alignItems: 'center', justifyContent: 'center',
+                  backdropFilter: 'blur(8px)',
                 }}>‹</button>
                 <button onClick={() => setImgIndex(i => (i + 1) % allImages.length)} style={{
-                  position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
+                  position: 'absolute', right: 12, top: '50%', zIndex: 2,
+                  transform: 'translateY(-50%)',
                   background: 'rgba(255,255,255,0.85)', border: 'none', borderRadius: '50%',
                   width: 36, height: 36, fontSize: 18, cursor: 'pointer', display: 'flex',
-                  alignItems: 'center', justifyContent: 'center', zIndex: 2,
+                  alignItems: 'center', justifyContent: 'center',
+                  backdropFilter: 'blur(8px)',
                 }}>›</button>
               </>
             )}

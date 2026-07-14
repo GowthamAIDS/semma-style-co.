@@ -1,43 +1,73 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const { user, logout } = useAuth();
   const { items } = useCart();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-      background: 'var(--bg-primary)', borderBottom: '1px solid var(--border)',
-    }}>
-      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
-        <Link to="/" style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.5px' }}>SEMMA</Link>
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <Link to="/shop" style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)' }}>Shop</Link>
-          <Link to="/shop?category=T-Shirts" style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)' }}>T-Shirts</Link>
-          <Link to="/shop?category=Mockups" style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)' }}>Mockups</Link>
+    <>
+      <header className={`header${scrolled ? ' scrolled' : ''}`}>
+        <div className="container header-inner">
+          <Link to="/" className="header-logo">SEMMA</Link>
+
+          <nav className="header-nav">
+            <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+              <Link to="/shop">Shop</Link>
+              <Link to="/shop?category=T-Shirts">T-Shirts</Link>
+              <Link to="/shop?category=Mockups">Mockups</Link>
+              {user && <Link to="/account">Account</Link>}
+              {user?.role === 'admin' && <Link to="/admin">Admin</Link>}
+            </div>
+            {user ? (
+              <button onClick={() => { logout(); navigate('/'); }} className="btn btn-sm btn-secondary">Logout</button>
+            ) : (
+              <Link to="/login" className="btn btn-sm btn-primary hide-mobile">Login</Link>
+            )}
+            <Link to="/checkout" className="cart-link">
+              Cart{items.length > 0 && <span className="cart-badge">{items.length}</span>}
+            </Link>
+            <button
+              className={`hamburger${menuOpen ? ' open' : ''}`}
+              onClick={() => setMenuOpen(p => !p)}
+              aria-label="Toggle menu"
+            >
+              <span /><span /><span />
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {menuOpen && (
+        <div className="mobile-nav">
+          <Link to="/shop" onClick={closeMenu}>Shop</Link>
+          <Link to="/shop?category=T-Shirts" onClick={closeMenu}>T-Shirts</Link>
+          <Link to="/shop?category=Mockups" onClick={closeMenu}>Mockups</Link>
           {user ? (
             <>
-              <Link to="/account" style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)' }}>Account</Link>
-              {user.role === 'admin' && <Link to="/admin" style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)' }}>Admin</Link>}
-              <button onClick={() => { logout(); navigate('/'); }} className="btn btn-sm btn-secondary">Logout</button>
+              <Link to="/account" onClick={closeMenu}>Account</Link>
+              {user.role === 'admin' && <Link to="/admin" onClick={closeMenu}>Admin</Link>}
+              <button onClick={() => { logout(); navigate('/'); closeMenu(); }}>Logout</button>
             </>
           ) : (
-            <Link to="/login" className="btn btn-sm btn-primary">Login</Link>
+            <Link to="/login" onClick={closeMenu}>Login</Link>
           )}
-          <Link to="/checkout" style={{ position: 'relative', fontSize: 13, fontWeight: 600 }}>
-            Cart {items.length > 0 && <span style={{
-              position: 'absolute', top: -8, right: -12, background: 'var(--text-primary)',
-              color: 'var(--bg-primary)', fontSize: 10, borderRadius: '50%', width: 18, height: 18,
-              display: 'flex', alignItems: 'center', justifyContent: 'center'
-            }}>{items.length}</span>}
-          </Link>
-        </nav>
-      </div>
-    </header>
+          <Link to="/checkout" onClick={closeMenu}>Cart ({items.length})</Link>
+        </div>
+      )}
+    </>
   );
 }

@@ -27,15 +27,9 @@ export default function Login() {
 
   return (
     <div className="page">
-      <div className="container" style={{
-        paddingTop: 120, paddingBottom: 80,
-        display: 'flex', justifyContent: 'center',
-      }}>
+      <div className="container" style={{ paddingTop: 120, paddingBottom: 80, display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '100%', maxWidth: 420 }}>
-          <div style={{
-            background: '#fff', borderRadius: 12, padding: '40px 36px',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
-          }}>
+          <div className="card" style={{ padding: '40px 36px' }}>
             <h1 style={{ fontSize: 26, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>Welcome back</h1>
             <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-secondary)', marginBottom: 28 }}>
               Sign in to your account
@@ -44,11 +38,7 @@ export default function Login() {
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
-                <input
-                  type="email" value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com" required autoFocus
-                />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required autoFocus />
               </div>
               <div className="form-group" style={{ position: 'relative' }}>
                 <label>Password</label>
@@ -60,7 +50,7 @@ export default function Login() {
                   style={{ paddingRight: 44 }}
                 />
                 <span onClick={() => setShowPw(p => !p)} style={{
-                  position: 'absolute', right: 12, bottom: 10, fontSize: 13,
+                  position: 'absolute', right: 12, bottom: 11, fontSize: 13,
                   color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none',
                   fontWeight: 600,
                 }}>{showPw ? 'Hide' : 'Show'}</span>

@@ -83,7 +83,7 @@ export default function Checkout() {
         <div className="container" style={{ paddingTop: 120 }}>
           <div className="empty">
             <h2>Your cart is empty</h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>Add some items before checking out.</p>
+            <p>Add some items before checking out.</p>
             <a href="/shop" className="btn btn-primary">Browse Shop</a>
           </div>
         </div>
@@ -98,38 +98,31 @@ export default function Checkout() {
         <div className="checkout-grid">
           <div>
             {error && <div className="error">{error}</div>}
-            <div className="form-group">
-              <label>Email Address</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-              />
+            <div className="card" style={{ padding: 24 }}>
+              <div className="form-group">
+                <label>Email Address</label>
+                <input
+                  type="email" value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                />
+              </div>
+              <button
+                className="btn btn-primary btn-block btn-lg"
+                onClick={handlePay}
+                disabled={loading}
+                style={{ marginTop: 8 }}
+              >
+                {loading ? 'Processing...' : `Pay ${formatPrice(total)}`}
+              </button>
             </div>
-            <button
-              className="btn btn-primary btn-block btn-lg"
-              onClick={handlePay}
-              disabled={loading}
-              style={{ marginTop: 8 }}
-            >
-              {loading ? 'Processing...' : `Pay ${formatPrice(total)}`}
-            </button>
           </div>
-          <div style={{
-            border: '1px solid var(--border)',
-            borderRadius: 12,
-            padding: 24,
-            background: '#fff',
-          }}>
+          <div className="card" style={{ padding: 24 }}>
             <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 20 }}>Order Summary</h3>
             {items.map((item) => (
               <div key={item.id} style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '12px 0',
-                borderBottom: '1px solid var(--border)',
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '12px 0', borderBottom: '1px solid var(--border)',
               }}>
                 <div style={{ flex: 1 }}>
                   <p style={{ fontSize: 14, fontWeight: 600 }}>{item.name || item.product_name}</p>
@@ -138,13 +131,7 @@ export default function Checkout() {
                 <p style={{ fontSize: 14, fontWeight: 600 }}>{formatPrice(item.price * item.quantity)}</p>
               </div>
             ))}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingTop: 16,
-              marginTop: 4,
-            }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, marginTop: 4 }}>
               <p style={{ fontSize: 16, fontWeight: 700 }}>Total</p>
               <p style={{ fontSize: 18, fontWeight: 700 }}>{formatPrice(total)}</p>
             </div>

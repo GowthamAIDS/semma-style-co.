@@ -37,15 +37,9 @@ export default function Signup() {
 
   return (
     <div className="page">
-      <div className="container" style={{
-        paddingTop: 120, paddingBottom: 80,
-        display: 'flex', justifyContent: 'center',
-      }}>
+      <div className="container" style={{ paddingTop: 120, paddingBottom: 80, display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '100%', maxWidth: 420 }}>
-          <div style={{
-            background: '#fff', borderRadius: 12, padding: '40px 36px',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
-          }}>
+          <div className="card" style={{ padding: '40px 36px' }}>
             <h1 style={{ fontSize: 26, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>Create an account</h1>
             <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-secondary)', marginBottom: 28 }}>
               Join Semma Style Co.
@@ -70,7 +64,7 @@ export default function Signup() {
                   style={{ paddingRight: 44 }}
                 />
                 <span onClick={() => setShowPw(p => !p)} style={{
-                  position: 'absolute', right: 12, bottom: 10, fontSize: 13,
+                  position: 'absolute', right: 12, bottom: 11, fontSize: 13,
                   color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none',
                   fontWeight: 600,
                 }}>{showPw ? 'Hide' : 'Show'}</span>
