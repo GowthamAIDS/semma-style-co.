@@ -376,8 +376,8 @@
   .table-wrap td { padding: 10px 12px; }
 
   .product-detail-grid { grid-template-columns: 1fr; gap: 32px; }
-  .product-detail-grid > div:first-child { order: 1; }
-  .product-detail-grid > div:last-child { order: 0; padding-top: 0; }
+  .product-detail-grid > div:first-child { order: 0; }
+  .product-detail-grid > div:last-child { order: 1; padding-top: 0; }
 
   .page-sm { padding: 0 16px; }
 }

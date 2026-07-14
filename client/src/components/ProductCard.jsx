@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
 
   useEffect(() => {
     if (images.length <= 1) return;
-    const timer = setInterval(() => setImgIndex(i => (i + 1) % images.length), 1200);
+    const timer = setInterval(() => setImgIndex(i => (i + 1) % images.length), 3000);
     return () => clearInterval(timer);
   }, [images.length]);
 
