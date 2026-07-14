@@ -48,26 +48,22 @@ export default function Account() {
               </div>
 
               {order.items && order.items.length > 0 && (
-                <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12, marginBottom: 12 }}>
+                <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12 }}>
                   {order.items.map((item, i) => (
-                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '4px 0', color: 'var(--text-secondary)' }}>
-                      <span>{item.name || item.product_name} × {item.quantity}</span>
-                      <span>{formatPrice(item.price * item.quantity)}</span>
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13, padding: '6px 0', color: 'var(--text-secondary)' }}>
+                      <span>{item.name || item.product_name} × {item.quantity} — {formatPrice(item.price * item.quantity)}</span>
+                      {item.download_token && (
+                        <a
+                          href={`/api/downloads/${item.download_token}`}
+                          className="btn btn-sm btn-primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Download
+                        </a>
+                      )}
                     </div>
                   ))}
-                </div>
-              )}
-
-              {order.download_token && (
-                <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12 }}>
-                  <a
-                    href={`/api/downloads/${order.download_token}`}
-                    className="btn btn-sm btn-primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Download Files
-                  </a>
                 </div>
               )}
             </div>
