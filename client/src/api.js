@@ -4,8 +4,12 @@ const token = () => localStorage.getItem('token');
 const headers = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${token()}` });
 
 const req = async (url, opts = {}) => {
-  const res = await fetch(url, { ...opts, headers: { ...headers(), ...opts.headers } });
-  const data = await res.json();
+  const isFormData = opts.body instanceof FormData;
+  const h = isFormData ? { Authorization: `Bearer ${token()}` } : { ...headers(), ...opts.headers };
+  const res = await fetch(url, { ...opts, headers: h });
+  const text = await res.text();
+  let data;
+  try { data = JSON.parse(text); } catch { throw new Error('Server returned HTML instead of JSON — possibly a network or routing issue'); }
   if (!res.ok) throw new Error(data.error || 'Request failed');
   return data;
 };
@@ -49,5 +53,5 @@ export const admin = {
 };
 
 export const upload = {
-  file: (formData) => req(`${API}/upload`, { method: 'POST', headers: { Authorization: `Bearer ${token()}` }, body: formData }),
+  file: (formData) => req(`${API}/upload`, { method: 'POST', body: formData }),
 };

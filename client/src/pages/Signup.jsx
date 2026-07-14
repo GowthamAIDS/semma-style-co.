@@ -8,12 +8,22 @@ export default function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+  const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    if (password !== confirm) {
+      setError('Passwords do not match');
+      return;
+    }
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
     setLoading(true);
     try {
       await signup({ name, email, password });
@@ -28,56 +38,55 @@ export default function Signup() {
   return (
     <div className="page">
       <div className="container" style={{
-        paddingTop: 120,
-        display: 'flex',
-        justifyContent: 'center',
+        paddingTop: 120, paddingBottom: 80,
+        display: 'flex', justifyContent: 'center',
       }}>
         <div style={{ width: '100%', maxWidth: 420 }}>
-          <h1 style={{ fontSize: 28, fontWeight: 700, textAlign: 'center', marginBottom: 32 }}>Create Account</h1>
-          {error && <div className="error">{error}</div>}
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Name</label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Create a password"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary btn-block btn-lg"
-              disabled={loading}
-              style={{ marginTop: 8 }}
-            >
-              {loading ? 'Creating account...' : 'Sign Up'}
-            </button>
-          </form>
-          <p style={{ textAlign: 'center', marginTop: 24, fontSize: 14, color: 'var(--text-secondary)' }}>
+          <div style={{
+            background: '#fff', borderRadius: 12, padding: '40px 36px',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+          }}>
+            <h1 style={{ fontSize: 26, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>Create an account</h1>
+            <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--text-secondary)', marginBottom: 28 }}>
+              Join Semma Style Co.
+            </p>
+            {error && <div className="error">{error}</div>}
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Name</label>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" required autoFocus />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
+              </div>
+              <div className="form-group" style={{ position: 'relative' }}>
+                <label>Password</label>
+                <input
+                  type={showPw ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="At least 6 characters" required
+                  style={{ paddingRight: 44 }}
+                />
+                <span onClick={() => setShowPw(p => !p)} style={{
+                  position: 'absolute', right: 12, bottom: 10, fontSize: 13,
+                  color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none',
+                  fontWeight: 600,
+                }}>{showPw ? 'Hide' : 'Show'}</span>
+              </div>
+              <div className="form-group">
+                <label>Confirm password</label>
+                <input type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="Repeat your password" required />
+              </div>
+              <button type="submit" className="btn btn-primary btn-block btn-lg" disabled={loading} style={{ marginTop: 4 }}>
+                {loading ? 'Creating account…' : 'Create Account'}
+              </button>
+            </form>
+          </div>
+          <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: 'var(--text-secondary)' }}>
             Already have an account?{' '}
-            <Link to="/login" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Log in</Link>
+            <Link to="/login" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Sign in</Link>
           </p>
         </div>
       </div>

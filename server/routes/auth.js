@@ -5,25 +5,34 @@ const { execute, queryOne } = require('../db');
 const { auth } = require('../middleware/auth');
 
 const router = express.Router();
+const JWT_SECRET = process.env.JWT_SECRET || 'semma-style-co-fallback-secret';
 
 router.post('/signup', (req, res) => {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) return res.status(400).json({ error: 'All fields required' });
-  const existing = queryOne('SELECT id FROM users WHERE email = ?', [email]);
-  if (existing) return res.status(400).json({ error: 'Email already registered' });
-  const hash = bcrypt.hashSync(password, 10);
-  const id = execute('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, hash]);
-  const token = jwt.sign({ id, name, email, role: 'customer' }, process.env.JWT_SECRET, { expiresIn: '7d' });
-  res.status(201).json({ token, user: { id, name, email, role: 'customer' } });
+  try {
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) return res.status(400).json({ error: 'All fields required' });
+    const existing = queryOne('SELECT id FROM users WHERE email = ?', [email]);
+    if (existing) return res.status(400).json({ error: 'Email already registered' });
+    const hash = bcrypt.hashSync(password, 10);
+    const id = execute('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, hash]);
+    const token = jwt.sign({ id, name, email, role: 'customer' }, JWT_SECRET, { expiresIn: '7d' });
+    res.status(201).json({ token, user: { id, name, email, role: 'customer' } });
+  } catch (err) {
+    res.status(500).json({ error: 'Signup failed: ' + err.message });
+  }
 });
 
 router.post('/login', (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
-  const user = queryOne('SELECT * FROM users WHERE email = ?', [email]);
-  if (!user || !bcrypt.compareSync(password, user.password)) return res.status(401).json({ error: 'Invalid credentials' });
-  const token = jwt.sign({ id: user.id, name: user.name, email: user.email, role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
-  res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+    const user = queryOne('SELECT * FROM users WHERE email = ?', [email]);
+    if (!user || !bcrypt.compareSync(password, user.password)) return res.status(401).json({ error: 'Invalid credentials' });
+    const token = jwt.sign({ id: user.id, name: user.name, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+  } catch (err) {
+    res.status(500).json({ error: 'Login failed: ' + err.message });
+  }
 });
 
 router.get('/me', auth, (req, res) => {

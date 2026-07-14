@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -35,24 +36,43 @@ export default function AdminLogin() {
       paddingTop: 80,
     }}>
       <div style={{ width: '100%', maxWidth: 400 }}>
-        <h1 style={{ fontSize: 28, fontWeight: 700, textAlign: 'center', marginBottom: 8 }}>Admin Login</h1>
-        <p style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: 14, marginBottom: 32 }}>
-          Sign in to access the admin panel.
+        <div style={{
+          background: '#fff', borderRadius: 12, padding: '40px 36px',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+        }}>
+          <h1 style={{ fontSize: 26, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>Admin</h1>
+          <p style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: 14, marginBottom: 28 }}>
+            Sign in to access the admin panel.
+          </p>
+          {error && <div className="error">{error}</div>}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Email</label>
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@semma.com" required autoFocus />
+            </div>
+            <div className="form-group" style={{ position: 'relative' }}>
+              <label>Password</label>
+              <input
+                type={showPw ? 'text' : 'password'}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="Enter password" required
+                style={{ paddingRight: 44 }}
+              />
+              <span onClick={() => setShowPw(p => !p)} style={{
+                position: 'absolute', right: 12, bottom: 10, fontSize: 13,
+                color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none',
+                fontWeight: 600,
+              }}>{showPw ? 'Hide' : 'Show'}</span>
+            </div>
+            <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+              {loading ? 'Signing in…' : 'Sign In'}
+            </button>
+          </form>
+        </div>
+        <p style={{ textAlign: 'center', marginTop: 16, fontSize: 12, color: 'var(--text-secondary)' }}>
+          Demo: admin@semma.com / admin123
         </p>
-        {error && <div className="error">{error}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Email</label>
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-          </div>
-          <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-            {loading ? 'Signing in…' : 'Sign In'}
-          </button>
-        </form>
       </div>
     </div>
   );
