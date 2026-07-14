@@ -2,6 +2,8 @@
   "name": "semma-style-co",
   "version": "1.0.0",
   "scripts": {
-    "start": "cd server && node server.js"
+    "build": "cd client && npm install && npm run build && cd ../server && npm install",
+    "start": "node server/server.js",
+    "postinstall": "cd client && npm install"
   }
 }
