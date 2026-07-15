@@ -25,7 +25,7 @@ export default function Header() {
           <Link to="/" className="header-logo">SEMMA</Link>
 
           <nav className="header-nav">
-            <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+            <div className="nav-links">
               <Link to="/shop">Shop</Link>
               <Link to="/shop?category=T-Shirts">T-Shirts</Link>
               <Link to="/shop?category=Mockups">Mockups</Link>

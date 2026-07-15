@@ -215,6 +215,9 @@
 .header-nav {
   display: flex; align-items: center; gap: 24px;
 }
+.nav-links {
+  display: flex; align-items: center; gap: 24px;
+}
 .header-nav a,
 .header-nav button {
   font-size: 13px; font-weight: 500; color: var(--text-secondary);
