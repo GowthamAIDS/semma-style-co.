@@ -32,7 +32,7 @@ export default function AdminLogin() {
 
   return (
     <div className="page container" style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', paddingTop: 80,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh',
     }}>
       <div style={{ width: '100%', maxWidth: 400 }}>
         <div className="card" style={{ padding: '40px 36px' }}>
@@ -55,11 +55,12 @@ export default function AdminLogin() {
                 placeholder="Enter password" required
                 style={{ paddingRight: 44 }}
               />
-              <span onClick={() => setShowPw(p => !p)} style={{
-                position: 'absolute', right: 12, bottom: 11, fontSize: 13,
-                color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none',
-                fontWeight: 600,
-              }}>{showPw ? 'Hide' : 'Show'}</span>
+              <button type="button" onClick={() => setShowPw(p => !p)} style={{
+                position: 'absolute', right: 4, bottom: 4, fontSize: 12,
+                color: 'var(--text-primary)', cursor: 'pointer', userSelect: 'none',
+                fontWeight: 600, background: 'none', border: 'none',
+                width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>{showPw ? 'Hide' : 'Show'}</button>
             </div>
             <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
               {loading ? 'Signing in…' : 'Sign In'}

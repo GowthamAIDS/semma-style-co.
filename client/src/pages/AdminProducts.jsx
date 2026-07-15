@@ -70,7 +70,7 @@ export default function AdminProducts() {
   };
 
   return (
-    <div className="page" style={{ paddingTop: 80 }}>
+    <div className="page">
       <div className="container admin-layout">
         <aside className="admin-sidebar">
           <h3>Admin</h3>
@@ -89,7 +89,7 @@ export default function AdminProducts() {
         </aside>
 
         <main className="admin-main">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+          <div className="admin-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
             <h1 style={{ fontSize: 24, fontWeight: 700 }}>Products</h1>
             {!editId && (
               <button onClick={() => { reset(); }} className="btn btn-primary btn-sm">Add Product</button>
@@ -99,10 +99,7 @@ export default function AdminProducts() {
           <div className="card" style={{ padding: 24, marginBottom: 32 }}>
             <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>{editId ? 'Edit Product' : 'New Product'}</h3>
             {error && <div className="error">{error}</div>}
-            <form onSubmit={handleSubmit} style={{
-              display: 'grid', gridTemplateColumns: '1fr 1fr',
-              gap: '0 24px',
-            }}>
+            <form onSubmit={handleSubmit} className="admin-form-grid">
               <div className="form-group">
                 <label>Name</label>
                 <input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />

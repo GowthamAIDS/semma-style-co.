@@ -25,7 +25,7 @@ export default function Shop() {
   };
 
   return (
-    <div className="page container" style={{ paddingTop: 120, paddingBottom: 80 }}>
+    <div className="page container" style={{ paddingBottom: 80 }}>
       <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 32 }}>Shop</h1>
       <div style={{ display: 'flex', gap: 8, marginBottom: 36, flexWrap: 'wrap' }}>
         {categories.map(c => (

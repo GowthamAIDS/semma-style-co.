@@ -22,7 +22,7 @@ export default function AdminLayout() {
   ];
 
   return (
-    <div className="page" style={{ paddingTop: 80 }}>
+    <div className="page">
       <div className="container admin-layout">
         <aside className="admin-sidebar">
           <h3>Admin</h3>

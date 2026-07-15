@@ -44,7 +44,7 @@
 .btn-secondary:hover { border-color: var(--text-primary); background: rgba(255,255,255,0.8); }
 .btn-block { width: 100%; }
 .btn-lg { padding: 14px 32px; font-size: 15px; border-radius: var(--radius-md); }
-.btn-sm { padding: 6px 14px; font-size: 13px; }
+.btn-sm { padding: 10px 18px; font-size: 13px; min-height: 38px; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 .btn-danger { background: #dc3545; color: #fff; box-shadow: 0 2px 8px rgba(220,53,69,0.2); }
 
@@ -232,8 +232,8 @@
 
 /* Hamburger */
 .hamburger {
-  display: none; flex-direction: column; justify-content: center;
-  gap: 5px; width: 24px; height: 24px; background: none;
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 44px; height: 44px; background: none;
   border: none; cursor: pointer; padding: 0;
 }
 .hamburger span {
@@ -304,6 +304,12 @@
   padding: 6px 18px; border-radius: 100px; margin-bottom: 24px;
 }
 
+/* Admin Form Grid */
+.admin-form-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+
 /* ── Admin ── */
 .admin-layout {
   display: flex; gap: 40px; min-height: calc(100vh - 80px);
@@ -346,7 +352,7 @@
 
   .header-inner { height: 56px; }
   .header-nav .nav-links { display: none; }
-  .hamburger { display: flex; }
+  .hamburger { display: flex; width: 44px; height: 44px; gap: 6px; }
 
   .grid-products { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -380,6 +386,15 @@
   .product-detail-grid > div:last-child { order: 1; padding-top: 0; }
 
   .page-sm { padding: 0 16px; }
+
+  .admin-form-grid { grid-template-columns: 1fr !important; }
+  .admin-header-row { flex-wrap: wrap; gap: 12px; }
+  .hero-section { padding-bottom: 60px !important; }
+
+  .card { padding: 20px !important; }
+  .card-form { padding: 28px 20px !important; }
+
+  .empty { padding: 60px 20px !important; }
 }
 
 @media (max-width: 480px) {

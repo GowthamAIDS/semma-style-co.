@@ -19,8 +19,8 @@ export default function ProductDetail() {
     productsApi.get(id).then(data => { setProduct(data); setLoading(false); }).catch(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <div className="page container" style={{ paddingTop: 120 }}><p style={{ color: 'var(--text-secondary)', textAlign: 'center', padding: '80px 0' }}>Loading…</p></div>;
-  if (!product) return <div className="page container" style={{ paddingTop: 120 }}><div className="empty"><h2>Product not found</h2></div></div>;
+  if (loading) return <div className="page container"><p style={{ color: 'var(--text-secondary)', textAlign: 'center', padding: '80px 0' }}>Loading…</p></div>;
+  if (!product) return <div className="page container"><div className="empty"><h2>Product not found</h2></div></div>;
 
   const images = parseGallery(product.gallery);
   const allImages = images.length > 0 ? images : [product.image].filter(Boolean);
@@ -33,7 +33,7 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="page container" style={{ paddingTop: 120, paddingBottom: 80 }}>
+    <div className="page container" style={{ paddingBottom: 80 }}>
       <div className="product-detail-grid">
         <div>
           <div className="card" style={{
@@ -43,18 +43,18 @@ export default function ProductDetail() {
             {allImages.length > 1 && (
               <>
                 <button onClick={() => setImgIndex(i => i === 0 ? allImages.length - 1 : i - 1)} style={{
-                  position: 'absolute', left: 12, top: '50%', zIndex: 2,
+                  position: 'absolute', left: 8, top: '50%', zIndex: 2,
                   transform: 'translateY(-50%)',
                   background: 'rgba(255,255,255,0.85)', border: 'none', borderRadius: '50%',
-                  width: 36, height: 36, fontSize: 18, cursor: 'pointer', display: 'flex',
+                  width: 44, height: 44, fontSize: 22, cursor: 'pointer', display: 'flex',
                   alignItems: 'center', justifyContent: 'center',
                   backdropFilter: 'blur(8px)',
                 }}>‹</button>
                 <button onClick={() => setImgIndex(i => (i + 1) % allImages.length)} style={{
-                  position: 'absolute', right: 12, top: '50%', zIndex: 2,
+                  position: 'absolute', right: 8, top: '50%', zIndex: 2,
                   transform: 'translateY(-50%)',
                   background: 'rgba(255,255,255,0.85)', border: 'none', borderRadius: '50%',
-                  width: 36, height: 36, fontSize: 18, cursor: 'pointer', display: 'flex',
+                  width: 44, height: 44, fontSize: 22, cursor: 'pointer', display: 'flex',
                   alignItems: 'center', justifyContent: 'center',
                   backdropFilter: 'blur(8px)',
                 }}>›</button>

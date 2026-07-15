@@ -7,7 +7,7 @@ export default function ThankYou() {
   if (!order) {
     return (
       <div className="page">
-        <div className="container" style={{ paddingTop: 120 }}>
+        <div className="container">
           <div className="empty">
             <h2>No order found</h2>
             <p>Looks like you haven't placed an order yet.</p>
@@ -20,7 +20,7 @@ export default function ThankYou() {
 
   return (
     <div className="page">
-      <div className="container page-sm" style={{ paddingTop: 60, paddingBottom: 80 }}>
+      <div className="container page-sm" style={{ paddingBottom: 80 }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <div style={{
             width: 64, height: 64, borderRadius: '50%', background: 'rgba(46,125,50,0.1)',
@@ -39,7 +39,7 @@ export default function ThankYou() {
           <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 20 }}>Order Details</h3>
           {order.items?.map((item, i) => (
             <div key={i} style={{
-              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8,
               padding: '12px 0', borderBottom: '1px solid var(--border)',
             }}>
               <div>

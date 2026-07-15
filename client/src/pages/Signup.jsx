@@ -37,7 +37,7 @@ export default function Signup() {
 
   return (
     <div className="page">
-      <div className="container" style={{ paddingTop: 120, paddingBottom: 80, display: 'flex', justifyContent: 'center' }}>
+      <div className="container" style={{ paddingBottom: 80, display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '100%', maxWidth: 420 }}>
           <div className="card" style={{ padding: '40px 36px' }}>
             <h1 style={{ fontSize: 26, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>Create an account</h1>
@@ -63,11 +63,12 @@ export default function Signup() {
                   placeholder="At least 6 characters" required
                   style={{ paddingRight: 44 }}
                 />
-                <span onClick={() => setShowPw(p => !p)} style={{
-                  position: 'absolute', right: 12, bottom: 11, fontSize: 13,
-                  color: 'var(--text-secondary)', cursor: 'pointer', userSelect: 'none',
-                  fontWeight: 600,
-                }}>{showPw ? 'Hide' : 'Show'}</span>
+                <button type="button" onClick={() => setShowPw(p => !p)} style={{
+                  position: 'absolute', right: 4, bottom: 4, fontSize: 12,
+                  color: 'var(--text-primary)', cursor: 'pointer', userSelect: 'none',
+                  fontWeight: 600, background: 'none', border: 'none',
+                  width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>{showPw ? 'Hide' : 'Show'}</button>
               </div>
               <div className="form-group">
                 <label>Confirm password</label>

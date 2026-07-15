@@ -13,7 +13,7 @@ export default function Account() {
   }, []);
 
   return (
-    <div className="page container page-sm" style={{ paddingTop: 120, paddingBottom: 80 }}>
+    <div className="page container page-sm" style={{ paddingBottom: 80 }}>
       <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>My Account</h1>
       <p style={{ color: 'var(--text-secondary)', marginBottom: 36, fontSize: 14 }}>
         {user?.name} &middot; {user?.email}
@@ -50,7 +50,7 @@ export default function Account() {
               {order.items && order.items.length > 0 && (
                 <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12 }}>
                   {order.items.map((item, i) => (
-                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13, padding: '6px 0', color: 'var(--text-secondary)' }}>
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, fontSize: 13, padding: '6px 0', color: 'var(--text-secondary)' }}>
                       <span>{item.name || item.product_name} × {item.quantity} — {formatPrice(item.price * item.quantity)}</span>
                       {item.download_token && (
                         <a

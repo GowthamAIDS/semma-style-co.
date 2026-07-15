@@ -33,7 +33,7 @@ export default function Home() {
       </section>
 
       {featured.length > 0 && (
-        <section style={{ padding: '0 0 100px' }} className="container">
+        <section className="container hero-section" style={{ padding: '0 0 100px' }}>
           <h2 className="gsap-reveal section-title">Featured Products</h2>
           <p className="gsap-reveal section-subtitle">Curated designs made for creators, brands, and everyone in between.</p>
           <div className="section-divider gsap-reveal" style={{ marginBottom: 40 }} />

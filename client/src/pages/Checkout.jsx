@@ -80,7 +80,7 @@ export default function Checkout() {
   if (!items.length) {
     return (
       <div className="page">
-        <div className="container" style={{ paddingTop: 120 }}>
+        <div className="container">
           <div className="empty">
             <h2>Your cart is empty</h2>
             <p>Add some items before checking out.</p>
@@ -93,7 +93,7 @@ export default function Checkout() {
 
   return (
     <div className="page">
-      <div className="container" style={{ paddingTop: 40, paddingBottom: 80 }}>
+      <div className="container" style={{ paddingBottom: 80 }}>
         <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 40 }}>Checkout</h1>
         <div className="checkout-grid">
           <div>
