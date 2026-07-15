@@ -30,7 +30,7 @@
   background: var(--primary-gradient); color: #ffffff;
   box-shadow: 0 2px 8px rgba(26,26,26,0.15);
 }
-.btn-primary:hover { box-shadow: 0 4px 16px rgba(26,26,26,0.25); transform: translateY(-1px); }
+.btn-primary:hover { box-shadow: 0 4px 16px rgba(26,26,26,0.25); transform: translateY(-1px); color: #ffffff; }
 .btn-gradient {
   background: linear-gradient(135deg, #c4b8a8 0%, #d4c8b8 100%);
   color: #1a1a1a; box-shadow: 0 2px 12px rgba(196,184,168,0.3);
