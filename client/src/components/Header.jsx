@@ -38,7 +38,7 @@ export default function Header() {
               <Link to="/login" className="btn btn-sm btn-primary">Login</Link>
             )}
             <Link to="/checkout" className="cart-link">
-              Cart{items.length > 0 && <span className="cart-badge">{items.length}</span>}
+              <span className="cart-text">Cart</span>{items.length > 0 && <span className="cart-badge">{items.length}</span>}
             </Link>
             <button
               className={`hamburger${menuOpen ? ' open' : ''}`}

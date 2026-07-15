@@ -27,7 +27,7 @@
 .btn:hover::after { background: rgba(255,255,255,0.1); }
 .btn:active { transform: scale(0.97); }
 .btn-primary {
-  background: var(--primary-gradient); color: var(--bg-primary);
+  background: var(--primary-gradient); color: #ffffff;
   box-shadow: 0 2px 8px rgba(26,26,26,0.15);
 }
 .btn-primary:hover { box-shadow: 0 4px 16px rgba(26,26,26,0.25); transform: translateY(-1px); }
@@ -401,6 +401,15 @@
   .grid-products { grid-template-columns: 1fr 1fr; gap: 10px; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .btn-lg { padding: 12px 24px; font-size: 14px; }
+  .header-nav { gap: 12px; }
+  .cart-link .cart-text { display: none; }
+  .header-inner { height: 52px; }
+  .page { padding-top: 56px; }
+}
+
+@media (max-width: 360px) {
+  .grid-products { grid-template-columns: 1fr; }
+  .header-nav { gap: 6px; }
 }
 
 @media (max-width: 360px) {
